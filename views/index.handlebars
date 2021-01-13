@@ -1,0 +1,28 @@
+<h1 class="display-4">Bem vindo</h1>
+
+<p class="lead"> This is a simple hero unit</p>
+<hr class="my-4">
+<p>It uses utility classes for typography</p>
+<p class="lead">
+    <a class="btn btn-primary btn-lg">Crie uma conta</a>
+</p>
+
+<hr>
+
+<h2>Postagens recentes:</h2>
+
+{{#each postagens}}
+<div class="card">
+    <div class="card-body">
+        <h3>{{titulo}}</h3>
+        <p>{{descricao}}</p>
+        <a href="/postagem/{{slug}}"><button class="btn btn-success">Leia Mais</button></a>
+        <hr>
+        <small>Categoria: {{categoria.nome}}</small>
+        <small>Publicado em: {{data}}</small>
+    </div>
+</div>
+
+{{else}}
+    <h5>Nenhuma postagem</h5>
+{{/each}}
