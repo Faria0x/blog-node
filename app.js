@@ -11,6 +11,10 @@ require("./models/Postagem")
 const Postagem = mongoose.model("postagens")
 require("./models/Categoria")
 const Categoria = mongoose.model("categorias")
+const usuarios = require("./routes/usuario")
+const passport = require("passport")
+require("./config/auth")(passport)
+
 
 // Configurações
   //Sessão
@@ -20,15 +24,17 @@ const Categoria = mongoose.model("categorias")
     saveUninitialized: true
   }))    // APP.USE É SEMPRE PRA CRIAR E CONFIGURAR MIDDLEWARES
 
+  app.use(passport.initialize())
+  app.use(passport.session()) //nessa ordem, depois da SESSAO
+
   app.use(flash()) // SEMPRE ABAIXO DA SESSÃO
 
   //Middleware
   app.use((req,res,next)=> {
     res.locals.success_msg = req.flash("success_msg")   // criar variáveis globais
     res.locals.error_msg = req.flash("error_msg")
-    next(
-
-    )
+    res.locals.error = req.flash("error")
+    next()
   })
 
   //Body parser
@@ -106,6 +112,8 @@ app.set("view engine", "handlebars")
     app.get("/404",(req,res)=> {
       res.send("Erro")
     })
+
+    app.use("/usuarios",usuarios)
 
     app.use("/admin", admin)
 //Outros
