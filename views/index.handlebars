@@ -16,7 +16,7 @@
     <div class="card-body">
         <h3>{{titulo}}</h3>
         <p>{{descricao}}</p>
-        <a href="/postagem/{{slug}}"><button class="btn btn-success">Leia Mais</button></a>
+        <a href="/postagem/{{slug}}"><button class="btn btn-success">Ver postagem completa</button></a>
         <hr>
         <small>Categoria: {{categoria.nome}}</small>
         <small>Publicado em: {{data}}</small>
@@ -24,5 +24,5 @@
 </div>
 
 {{else}}
-    <h5>Nenhuma postagem</h5>
+    <h5>Ainda não há postagens</h5>
 {{/each}}
